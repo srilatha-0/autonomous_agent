@@ -1,0 +1,64 @@
+Scenario,IP Address,Actual Tool Invocation Order,Final Report
+CSV Data,185.220.101.45,"T1
+T3
+T4
+T2","A. Tool Invocation Order
+
+- t1 (IP Reputation)
+- t3 (SIEM)
+- t4 (Threat Intelligence Knowledge)
+- t2 (DNS/WHOIS)
+
+B. Final Investigation Report
+
+1. **Investigation Target**
+   - IP Address: 185.220.101.45
+   - ASN: AS9009
+   - Organization: M247 Europe SRL
+   - Country: Germany
+   - Reverse DNS: tor-exit.example.net
+
+2. **Evidence Collected**
+   - Reputation Data:
+     - IP Address: 185.220.101.45
+     - Reputation: Malicious
+     - Risk Score: 95
+     - Categories: Tor exit node; scanning; suspicious authentication activity
+     - First Seen: 2026-06-12
+     - Source: AbuseIPDB
+
+   - WHOIS/DNS Data:
+     - IP Address: 185.220.101.45
+     - ASN: AS9009
+     - Organization: M247 Europe SRL
+     - Country: Germany
+     - Reverse DNS: tor-exit.example.net
+
+3. **Indicators of Compromise**
+   - Malicious reputation score (Risk Score: 95)
+   - Tor exit node usage
+   - Scanning activity
+   - Suspicious authentication attempts
+
+4. **Observed Organizational Activity**
+   - No SIEM data directly correlated to this IP address.
+   - Possible authentication anomalies or failed login attempts, but no confirmed successful activities.
+
+5. **Risk Assessment**
+   - The IP is associated with a high-risk category of Tor exit node and scanning activity.
+   - Suspicious authentication attempts from the same IP may suggest credential compromise or password spraying activity.
+
+6. **Confidence Level**
+   - Moderate confidence based on external reputation score, though the evidence must be correlated with internal telemetry for confirmation.
+
+7. **Recommended SOC Actions**
+   - Correlate the observed suspicious activities with internal logs and telemetry.
+   - Perform an internal network scan to check for vulnerabilities that may have been targeted by the scanning activity.
+   - Monitor accounts associated with failed authentication attempts or suspicious login patterns.
+   - Evaluate the usage of the M247 Europe SRL infrastructure, given its association as a Tor exit node.
+
+8. **Important Uncertainties**
+   - The reputation score alone is not conclusive proof of compromise; it should be correlated with internal telemetry.
+   - The presence of scanning activity and authentication anomalies may indicate reconnaissance or an attack in progress, but further context is needed to confirm if the host was compromised.
+
+This report is based exclusively on the evidence provided by the tools. No assumptions were made beyond what was directly returned from the tool results."

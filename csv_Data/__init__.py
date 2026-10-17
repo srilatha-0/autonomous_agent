@@ -1,0 +1,1 @@
+"""CSV-backed investigation mode with XLSX test scenarios."""

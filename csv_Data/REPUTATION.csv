@@ -1,0 +1,13 @@
+ip_address,reputation,risk_score,categories,first_seen,source
+185.220.101.45,Malicious,95,Tor exit node; scanning; suspicious authentication activity,12-06-2026,AbuseIPDB
+45.155.205.233,Malicious,91,Brute-force attempts; credential attacks,21-05-2026,Internal TI
+103.76.120.18,Suspicious,72,Repeated scanning reports; low-confidence abuse reports,04-07-2026,Internal TI
+91.198.174.192,Benign,4,Known Wikimedia infrastructure,Well-known,WHOIS/OSINT
+8.8.8.8,Benign,1,Public DNS infrastructure,Well-known,Internal TI
+1.1.1.1,Benign,1,Public DNS infrastructure,Well-known,Internal TI
+185.199.108.153,Benign,8,GitHub Pages infrastructure,Well-known,Internal TI
+20.205.243.166,Benign,7,Microsoft/Azure infrastructure,Well-known,Internal TI
+198.51.100.24,Unknown,50,No reliable reputation information,15-08-2026,Internal TI
+203.0.113.77,Suspicious,68,Reported scanning activity; reputation confidence moderate,03-08-2026,Internal TI
+172.67.155.90,Benign,12,Cloudflare-associated infrastructure,Well-known,OSINT
+45.9.148.22,Malicious,88,Malware distribution and command-and-control reports,18-04-2026,Internal TI

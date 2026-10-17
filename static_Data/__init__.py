@@ -1,0 +1,1 @@
+"""Fixture-backed static-data investigation mode."""

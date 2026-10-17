@@ -1,0 +1,13 @@
+python -m autonomous_agent.static_Data.main
+
+update whois_dns set 
+organization = 'Google LLC',
+country = 'United States',
+reverse_dns = 'dns.google'
+where ip_address = '185.220.101.45'
+
+update whois_dns set 
+organization = 'M247 Europe SRL',
+country = 'Germany',
+reverse_dns = 'tor-exit.example.net'
+where ip_address = '185.220.101.45'

@@ -1,0 +1,62 @@
+Scenario,IP Address,Actual Tool Invocation Order,Final Report
+Initial Data,185.220.101.45,"T1
+T2
+T3
+
+
+1. t1 (IP Reputation)
+2. t2 (DNS/WHOIS)
+3. t3 (SIEM Activity)
+4. t4 (Threat Intelligence Knowledge)
+
+B. Final Investigation Report
+
+1. **Investigation Target**
+   - IP Address: 185.220.101.45
+   - Reputation: Malicious
+   - Risk Score: 95
+   - Categories: Tor exit node, scanning, suspicious activity
+   - First Seen: 2026-06-12
+
+2. **Evidence Collected**
+   - t1: The IP is classified as malicious with a high risk score.
+   - t2: 
+     - ASN: AS9009
+     - Organization: Google LLC
+     - Country: United States
+     - Reverse DNS: dns.google
+   - t3:
+     - Events: 17
+     - Systems Involved: WEB-SRV-01, VPN-GW-01
+     - Activity: Multiple failed authentication attempts followed by successful VPN authentication. Port scanning observed against WEB-SRV-01.
+   - t4:
+     - Tor exit nodes are not automatically malicious but repeated authentication failures and scanning activity increase investigation priority.
+
+3. **Indicators of Compromise**
+   - IP Address: 185.220.101.45
+   - Malicious Reputation
+   - Multiple Failed Authentication Attempts
+   - Port Scanning Activity (Observed against WEB-SRV-01)
+   - Successful Authentication Followed by Port Scanning
+
+4. **Observed Organizational Activity**
+   - Systems Affected:
+     - WEB-SRV-01: Received multiple failed authentication attempts and port scanning.
+     - VPN-GW-01: Experienced successful authentication followed by port scanning.
+
+5. **Risk Assessment**
+   - The IP is categorized as malicious with a high risk score, indicating potential compromise or significant suspicious activity.
+
+6. **Confidence Level**
+   - High Risk Score (95)
+   - Multiple Indicators (Malicious Reputation + Failed Authentication Attempts + Port Scanning)
+
+7. **Recommended SOC Actions**
+   - Validate the IP reputation further to ensure it is not part of a legitimate but misclassified network.
+   - Check the historical SIEM events for similar activity patterns and correlate with other suspicious activities.
+   - Implement more stringent monitoring and logging on systems affected (WEB-SRV-01, VPN-GW-01).
+   - Conduct an in-depth analysis to determine if there has been any successful compromise or if this is part of a larger intrusion.
+
+8. **Important Uncertainties**
+   - The high-risk classification does not automatically confirm a successful compromise.
+   - Additional investigation is required to differentiate between malicious infrastructure, scanning activity, attempted intrusion, and confirmed compromise."

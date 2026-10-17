@@ -1,0 +1,50 @@
+Scenario,IP Address,Actual Tool Invocation Order,Final Report
+Initial Data,185.220.101.45,"T1
+T3
+T2
+T4","A. Tool Invocation Order
+
+The tools used during the investigation are:
+
+1. t1 (IP Reputation)
+2. t3 (SIEM Activity)
+3. t2 (DNS/WHOIS)
+4. t4 (Threat Intelligence Knowledge)
+
+B. Final Investigation Report
+
+1. **Investigation Target**
+   - IP Address: 185.220.101.45
+   - Reputation: Benign according to the initial tool.
+   - Risk Score: 5, indicating low risk as per the initial tool.
+   
+2. **Evidence Collected**
+   - The IP is listed as a Tor exit node with ongoing scanning and suspicious activity (t1).
+   - Multiple failed authentication attempts followed by successful VPN authentication on systems WEB-SRV-01 and VPN-GW-01, along with port scanning against WEB-SRV-01 (t3).
+   - Registered to M247 Europe SRL in Germany under ASN AS9009 (t2).
+
+3. **Indicators of Compromise**
+   - Tor exit node (t2).
+   - Ongoing scanning activity and suspicious behavior (t1, t3).
+   - Repeated failed authentication attempts leading to successful authentication on network systems (t3).
+
+4. **Observed Organizational Activity**
+   - Port scanning: Observed against WEB-SRV-01.
+   - Multiple security events involving authentication processes on two key organizational servers.
+
+5. **Risk Assessment**
+   - The IP reputation is benign, but the activity observed raises concerns due to the nature of actions (t3).
+
+6. **Confidence Level**
+   - The initial tool indicated low risk with a score of 5.
+   - Suspicious activities recorded in SIEM further raise concern.
+
+7. **Recommended SOC Actions**
+   - Further validation of IP reputation using additional tools if needed.
+   - Conduct internal network traffic analysis to correlate events.
+   - Monitor and possibly block repeated scanning activity or anomalous authentication attempts from the same source.
+   - Notify relevant stakeholders for awareness and preventive measures.
+
+8. **Important Uncertainties**
+   - The initial tool classified the IP as benign, which may not automatically indicate no risk (T4 restriction).
+   - Further detailed analysis is recommended to conclusively determine if this activity represents a true threat or not."

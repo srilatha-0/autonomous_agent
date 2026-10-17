@@ -1,0 +1,72 @@
+Scenario,IP Address,Actual Tool Invocation Order,Final Report
+Initial Data,185.220.101.45,"T1
+T2
+T3
+
+
+1. t1 (IP Reputation)
+2. t2 (DNS/WHOIS)
+3. t3 (SIEM Activity)
+4. t4 (Threat Intelligence Knowledge)
+
+B. Final Investigation Report
+
+1. **Investigation Target**
+   - IP Address: 185.220.101.45
+
+2. **Evidence Collected**
+
+   a. T1: 
+      - Reputation: malacious
+      - Risk Score: 95
+      - Categories: Tor exit node, scanning, suspicious activity
+      - First Seen: 2026-06-12
+
+   b. T2:
+      - ASN: AS9009
+      - Organization: M247 Europe SRL
+      - Country: Germany
+      - Reverse DNS: tor-exit.example.net
+
+   c. T3:
+      - Events: 17
+      - Systems: WEB-SRV-01, VPN-GW-01
+      - Activity: Multiple failed authentication attempts followed by successful VPN authentication. Port scanning observed against WEB-SRV-01.
+
+   d. T4:
+      - Alerting guidance and sequence for investigation
+
+3. **Indicators of Compromise (IoCs)**
+   - Malicious reputation with a high risk score.
+   - Tor exit node activity.
+   - Scanning behavior.
+   - Suspicious authentication patterns (failed attempts followed by successful ones).
+
+4. **Observed Organizational Activity**
+   - Multiple failed authentication attempts against Web server (WEB-SRV-01).
+   - Successful authentication through the VPN gateway (VPN-GW-01).
+   - Port scanning activity directed at the web server.
+
+5. **Risk Assessment**
+   - The combination of a high-risk IP, Tor exit node status, and observed suspicious activities warrants careful monitoring.
+   - Multiple failed authentication attempts followed by successful ones suggest an attempted compromise attempt on the network infrastructure.
+
+6. **Confidence Level**
+   - Based on the gathered evidence:
+     - Malicious IP reputation: 95 (high risk)
+     - Scanning activity: high probability
+     - Failed authentication attempts: clear indication of intrusion attempts
+   - The overall confidence level is moderate to high, but more information and context are required.
+
+7. **Recommended SOC Actions**
+   - Investigate the incident further using SIEM data.
+   - Monitor the activities on Web server (WEB-SRV-01) and VPN gateway (VPN-GW-01).
+   - Perform a thorough review of recent log files for any signs of malicious activity.
+   - Consider a forensic analysis if necessary.
+
+8. **Important Uncertainties**
+   - The Tor exit node alone does not prove malicious intent; it could be legitimate use or misconfiguration.
+   - The authentication sequence needs to be verified and correlated with user behavior.
+   - Further investigation is required to distinguish between an attempted intrusion and actual compromise.
+
+The final report is based solely on the provided tool evidence. No external information was used, and no assumptions were made beyond what was explicitly stated in the tool responses."

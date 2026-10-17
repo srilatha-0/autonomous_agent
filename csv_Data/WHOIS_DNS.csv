@@ -1,0 +1,13 @@
+ip_address,asn,organization,country,reverse_dns,notes
+185.220.101.45,AS9009,M247 Europe SRL,Germany,tor-exit.example.net,Host associated with Tor exit infrastructure
+45.155.205.233,AS9009,M247 Europe SRL,Netherlands,vps-45-155-205-233.example.net,VPS hosting
+103.76.120.18,AS136052,Example Hosting Pvt Ltd,India,static-103-76-120-18.example.net,Cloud/VPS hosting
+91.198.174.192,AS14907,Wikimedia Foundation,Netherlands,text-lb.esams.wikimedia.org,Known Wikimedia infrastructure
+8.8.8.8,AS15169,Google LLC,United States,dns.google,Public DNS resolver
+1.1.1.1,AS13335,Cloudflare Inc.,United States,one.one.one.one,Public DNS resolver
+185.199.108.153,AS54113,Fastly Inc.,United States,cdn-185-199-108-153.github.com,GitHub Pages/CDN infrastructure
+20.205.243.166,AS8075,Microsoft Corporation,United States,20-205-243-166.example.azure.com,Azure infrastructure
+198.51.100.24,AS64500,Example Networks,United States,host-198-51-100-24.example.net,Documentation/test network
+203.0.113.77,AS64501,Example Transit,Singapore,scan-203-0-113-77.example.net,Documentation/test network
+172.67.155.90,AS13335,Cloudflare Inc.,United States,172.67.155.90.example.cloudflare,Cloudflare infrastructure
+45.9.148.22,AS206092,Example Bulletproof Hosting,Romania,srv-45-9-148-22.example.net,Dedicated/VPS hosting

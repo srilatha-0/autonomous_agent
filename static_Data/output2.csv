@@ -1,0 +1,72 @@
+Scenario,IP Address,Actual Tool Invocation Order,Final Report
+Initial Data,185.220.101.45,"T1
+T2
+T3
+T4","A. Tool Invocation Order
+
+1. t1 - IP Reputation
+2. t2 - DNS/WHOIS
+3. t3 - SIEM Activity
+4. t4 - Threat Intelligence Knowledge
+
+B. Final Investigation Report
+
+1. **Investigation Target**
+   - IP Address: 185.220.101.45
+
+2. **Evidence Collected**
+
+   - **Tool t1 (IP Reputation)**
+     - Reputation: malicious
+     - Risk Score: 10
+     - Categories: Tor exit node, scanning, suspicious activity
+     - First Seen: 2026-06-12
+
+   - **Tool t2 (DNS/WHOIS)**
+     - ASN: AS9009
+     - Organization: M247 Europe SRL
+     - Country: Germany
+     - Reverse DNS: tor-exit.example.net
+
+   - **Tool t3 (SIEM Activity)**
+     - Events: 17
+     - Systems: WEB-SRV-01, VPN-GW-01
+     - Activity: Multiple failed authentication attempts followed by successful VPN authentication. Port scanning observed against WEB-SRV-01.
+
+   - **Tool t4 (Threat Intelligence Knowledge)**
+     - Tor exit nodes are not automatically malicious.
+     - Combined with repeated authentication failures, scanning activity, or suspicious access, the IP should be treated as a potential intrusion indicator until sufficient contrary evidence exists.
+
+3. **Indicators of Compromise**
+
+   - Malicious reputation
+   - Tor exit node (category)
+   - Multiple failed authentication attempts
+   - Successful VPN authentication
+   - Port scanning against WEB-SRV-01
+
+4. **Observed Organizational Activity**
+
+   - Web server and virtual private network gateways are under suspicious activity.
+   - Potential reconnaissance or unauthorized access.
+
+5. **Risk Assessment**
+
+   The high-risk score from the IP reputation, combined with observed authentication anomalies and port scanning activities, suggests a significant risk associated with this IP address.
+
+6. **Confidence Level**
+
+   The evidence gathered supports a moderate level of confidence that 185.220.101.45 is part of malicious infrastructure or involved in an attempted intrusion. However, without conclusive proof of successful compromise, the situation remains under investigation.
+
+7. **Recommended SOC Actions**
+
+   - Monitor the network for further activity.
+   - Increase logging and capture potential indicators of future attacks.
+   - Conduct a deeper analysis to correlate historical data with current SIEM events.
+   - Implement additional security measures on WEB-SRV-01 and VPN-GW-01.
+
+8. **Important Uncertainties**
+
+   - The classification of the IP as ""malicious"" is based purely on its reputation, which may change over time.
+   - The nature of the observed activities (suspicious authentication attempts) does not definitively prove successful compromise.
+   - Further investigation into historical and contemporaneous data will be necessary to confirm or refute any concerns."

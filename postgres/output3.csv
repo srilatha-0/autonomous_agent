@@ -1,0 +1,77 @@
+Timestamp,IP Address,Actual Tool Invocation Order,Verification Status,Final Report
+2026-10-18T00:27:35,185.220.101.45,T1 -> T2 -> T3,TOOLS RECORDED - REPORT REQUIRES VALIDATION,"**A. Tool Invocation Order**
+
+| # | Tool Used | What Was Known Before the Call | Primary Unanswered Question | Why This Tool Was Chosen |
+|---|-----------|-------------------------------|-----------------------------|--------------------------|
+| 1 | **ip_reputation_lookup** | Nothing – the IP address had not been examined yet. | *What is the known reputation and risk profile of 185.220.101.45?* | This tool directly returns reputation, risk score, categories, first‑seen date and source, giving an initial threat context. |
+| 2 | **whois_dns_lookup** | The IP is classified as “Benign” with a low risk score but is tagged in the categories *Tor exit node; scanning; suspicious authentication activity*. | *Who owns the IP, where is it located, and does the WHOIS data confirm the Tor‑exit categorisation?* | WHOIS/DNS data provides ASN, organization, country, reverse DNS and any notes that can confirm infrastructure ownership and geographic context. |
+| 3 | **siem_event_lookup** | The IP is owned by **M247 Europe SRL** in Germany, appears as a Tor exit node, and carries a benign risk score despite the “scanning” and “suspicious authentication” tags. | *Has this IP interacted with any of our internal assets, and if so, what type of activity was observed?* | The SIEM lookup returns internal events where the IP was the source, allowing us to assess actual observed behavior against our environment. |
+
+No further tool calls were made because the three sources together answer the core investigative questions:
+
+* Reputation & categorisation → ip_reputation_lookup  
+* Ownership & infrastructure context → whois_dns_lookup  
+* Observed internal activity → siem_event_lookup  
+
+Additional calls (e.g., broader threat‑knowledge searches) would only repeat information already captured in the categories or provide generic context that cannot be directly tied to this IP.
+
+---
+
+**B. Final Investigation Report**
+
+1. **Investigation Target**  
+   - IP Address: **185.220.101.45**
+
+2. **Evidence Collected**  
+
+   | Source | Data Extracted |
+   |--------|----------------|
+   | **ip_reputation_lookup** | Reputation: **Benign**  <br>Risk Score: **5** (low) <br>Categories: **Tor exit node; scanning; suspicious authentication activity** <br>First Seen: **2026‑06‑12** <br>Source: **AbuseIPDB** |
+   | **whois_dns_lookup** | ASN: **AS9009** <br>Organization: **M247 Europe SRL** <br>Country: **Germany** <br>Reverse DNS: **tor-exit.example.net** <br>Notes: **Host associated with Tor exit infrastructure** |
+   | **siem_event_lookup** | **Event EVT‑1001** – 2026‑09‑28 08:14 UTC – Asset **VPN‑GW‑01** – Authentication **FAILURE** – “Multiple failed VPN login attempts for user j.smith” – Severity **High**  <br>**Event EVT‑1002** – 2026‑09‑28 08:16 UTC – Asset **VPN‑GW‑01** – Authentication **SUCCESS** – “Successful VPN authentication for user j.smith after repeated failures” – Severity **Critical**  <br>**Event EVT‑1003** – 2026‑09‑28 08:21 UTC – Asset **WEB‑SRV‑01** – Network **ALERT** – “Port scanning detected against ports 22, 80, 443 and 3389” – Severity **High** |
+
+3. **Indicators of Compromise (IoCs)**  
+
+   - **Successful VPN authentication (Critical severity)** from an IP that is a known Tor exit node and was previously flagged for “suspicious authentication activity”.  
+   - **Port‑scanning activity** against common service ports (22, 80, 443, 3389) originating from the same IP, matching the “scanning” category in the reputation data.  
+
+   *Note:* The IP’s benign reputation does **not** rule out malicious use; the observed internal events constitute concrete IoCs.
+
+4. **Observed Organizational Activity**  
+
+   - **Authentication chain on VPN‑GW‑01:** multiple failed attempts followed by a successful login for user *j.smith* within a 2‑minute window.  
+   - **Network alert on WEB‑SRV‑01:** rapid connection attempts to four well‑known service ports, classified as a port‑scan.  
+
+   Both activities were logged with **High** or **Critical** severity, indicating they were flagged by existing detection rules.
+
+5. **Risk Assessment**  
+
+   - **Technical Risk:** The combination of a successful VPN login from a Tor exit node and concurrent port‑scanning suggests possible credential compromise or an attacker leveraging anonymity services to evade detection. The high severity of the SIEM events raises the immediate risk to the VPN gateway and web server.  
+   - **Contextual Risk:** The IP’s overall reputation is low (score 5) and labeled “Benign”, but the specific categories (Tor exit, scanning, suspicious authentication) align with the observed events, increasing the contextual risk.  
+   - **Overall Rating:** **Medium‑High** – the IP is not globally flagged as malicious, yet the concrete internal events demonstrate a tangible threat to critical assets.
+
+6. **Confidence Level**  
+
+   - **High confidence** in the accuracy of the SIEM event data (direct logs from internal sensors).  
+   - **Moderate confidence** in the reputation categorisation (derived from external database, may lag behind real‑time abuse).  
+   - **Overall confidence** in the assessment is **High** for the observed activity, **Moderate** for broader threat attribution beyond the logged events.
+
+7. **Recommended SOC Actions**  
+
+   1. **Immediate containment** – block or quarantine traffic from 185.220.101.45 at the perimeter firewall and VPN gateway.  
+   2. **Credential verification** – force a password reset and review multi‑factor authentication (MFA) status for user *j.smith*.  
+   3. **Session review** – examine the VPN session logs for data exfiltration or lateral movement post‑login.  
+   4. **Network monitoring** – enable heightened logging for any further connections from Tor exit nodes, especially to privileged services.  
+   5. **Threat hunting** – search for additional signs of compromise (e.g., new user accounts, suspicious processes) on VPN‑GW‑01 and WEB‑SRV‑01.  
+   6. **Policy review** – consider restricting VPN access from known Tor exit nodes or requiring additional verification steps for such sources.  
+
+8. **Important Uncertainties**  
+
+   - **Intent of the successful VPN login:** It is unclear whether the login was legitimate (e.g., user deliberately using Tor) or the result of credential theft.  
+   - **Scope of the scanning activity:** The port‑scan could be a preliminary reconnaissance step; further probing may occur from the same or related IPs.  
+   - **Persistence:** No evidence yet of post‑login malicious commands or data movement; additional investigation is needed to determine if the attacker established persistence.  
+   - **Attribution:** While the IP is linked to Tor exit infrastructure, the ultimate actor behind the traffic remains unidentified.  
+
+--- 
+
+*All statements above are derived exclusively from the three tool outputs obtained during this investigation.*"

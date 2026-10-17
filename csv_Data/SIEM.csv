@@ -1,0 +1,16 @@
+event_id,timestamp,source_ip,asset,event_type,action,description,severity
+EVT-1001,28-09-2026 08:14,185.220.101.45,VPN-GW-01,authentication,FAILURE,Multiple failed VPN login attempts for user j.smith,High
+EVT-1002,28-09-2026 08:16,185.220.101.45,VPN-GW-01,authentication,SUCCESS,Successful VPN authentication for user j.smith after repeated failures,Critical
+EVT-1003,28-09-2026 08:21,185.220.101.45,WEB-SRV-01,network,ALERT,"Port scanning detected against ports 22, 80, 443 and 3389",High
+EVT-1004,28-09-2026 08:25,45.155.205.233,VPN-GW-01,authentication,FAILURE,42 failed authentication attempts across 11 usernames,High
+EVT-1005,28-09-2026 08:31,45.155.205.233,AD-01,authentication,BLOCKED,Account lockout triggered for user a.kumar,Medium
+EVT-1006,28-09-2026 09:05,103.76.120.18,WEB-SRV-02,network,ALERT,Sequential connection attempts to 18 TCP ports,Medium
+EVT-1007,28-09-2026 09:17,91.198.174.192,WEB-PROXY-01,web,ALLOW,Normal access to Wikimedia resources,Low
+EVT-1008,28-09-2026 09:25,8.8.8.8,DNS-SRV-01,dns,ALLOW,Normal DNS resolution traffic,Low
+EVT-1009,28-09-2026 09:28,1.1.1.1,DNS-SRV-01,dns,ALLOW,Normal DNS resolution traffic,Low
+EVT-1010,28-09-2026 10:02,198.51.100.24,WEB-SRV-01,network,NONE,No matching security events beyond routine connection logging,Informational
+EVT-1011,28-09-2026 10:14,203.0.113.77,WEB-SRV-03,network,ALERT,Repeated HTTP requests to common administration paths,Medium
+EVT-1012,28-09-2026 10:27,172.67.155.90,WEB-PROXY-01,web,ALLOW,Normal Cloudflare-served web traffic,Low
+EVT-1013,28-09-2026 10:45,45.9.148.22,MAIL-GW-01,email,ALERT,Connection associated with known malware delivery infrastructure,Critical
+EVT-1014,28-09-2026 10:47,45.9.148.22,ENDPOINT-227,network,ALERT,Outbound connection to suspicious IP after attachment execution,Critical
+EVT-1015,28-09-2026 11:03,185.199.108.153,WEB-PROXY-01,web,ALLOW,Normal access to GitHub Pages content,Low
